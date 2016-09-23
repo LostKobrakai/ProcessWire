@@ -1975,8 +1975,8 @@ class WireArray extends Wire implements \IteratorAggregate, \ArrayAccess, \Count
 		);
 		$options = array_merge($defaults, $options);
 		$getMethod = $options['getMethod'];
-		$isArray = is_array($property);
-		$isFunction = !$isArray && !is_string($property) && is_callable($property);
+		$isFunction = !is_string($property) && is_callable($property);
+		$isArray = !$isFunction && is_array($property);
 		$values = array();
 		foreach($this as $key => $item) {
 			if(!empty($options['key']) && is_string($options['key'])) {
