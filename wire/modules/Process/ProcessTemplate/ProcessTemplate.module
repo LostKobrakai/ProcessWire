@@ -658,8 +658,14 @@ class ProcessTemplate extends Process {
 
 		$field = $this->modules->get('InputfieldSubmit');
 		$field->attr('value', $this->_x('Save', 'button')); 
-		$field->class .= ' head_button_clone';
-		$form->append($field); 
+		$field->addClass('head_button_clone');
+		$form->append($field);
+
+		$field = $this->modules->get('InputfieldButton');
+		$field->attr('value', $this->labels['Export']);
+		$field->attr('href', 'export/?export_templates[]=' . $template->name);
+		$field->addClass('ui-priority-secondary');
+		$form->add($field);
 
 		return $form; 
 	}

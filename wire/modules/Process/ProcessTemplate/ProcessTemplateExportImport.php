@@ -44,9 +44,9 @@ class ProcessTemplateExportImport extends Wire {
 
 		$form = $this->wire('modules')->get('InputfieldForm');
 		$form->action = './';
-		$form->method = 'post';
+		$form->method = 'get';
 
-		$exportTemplates = $this->wire('input')->post('export_templates');
+		$exportTemplates = $this->wire('input')->get('export_templates');
 
 		if(empty($exportTemplates)) {
 
@@ -110,6 +110,7 @@ class ProcessTemplateExportImport extends Wire {
 			$f->description = $this->_('Copy and paste this data into the "Import" box of another installation.');
 			$f->notes = $this->_('Click anywhere in the box to select all export data. Once selected, copy the data with CTRL-C or CMD-C.');
 			$f->attr('value', wireEncodeJSON($this->getExportData($exportTemplates), true, true));
+			$f->attr('rows', 15);
 			$form->add($f);
 
 			$f = $this->wire('modules')->get('InputfieldButton');

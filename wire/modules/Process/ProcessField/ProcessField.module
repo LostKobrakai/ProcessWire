@@ -806,7 +806,13 @@ class ProcessField extends Process implements ConfigurableModule {
 		$field = $this->modules->get('InputfieldSubmit');
 		$field->attr('value', $this->labels['save']); 
 		$field->attr('name', 'submit_save_field'); 
-		$field->class .= ' head_button_clone';
+		$field->addClass('head_button_clone');
+		$form->add($field);
+
+		$field = $this->modules->get('InputfieldButton');
+		$field->attr('value', $this->labels['export']);
+		$field->attr('href', 'export/?export_fields[]=' . $this->field->name);
+		$field->addClass('ui-priority-secondary');
 		$form->add($field); 
 
 		if($this->wire('input')->get('process_template')) {
@@ -1210,7 +1216,6 @@ class ProcessField extends Process implements ConfigurableModule {
 		$field->description = $this->_('Check the field for unused data or other possible optimizations. If any issues are found, you will have the opportunity to correct them from the Alert tab after saving.');
 		$field->collapsed = Inputfield::collapsedBlank;
 		$form->add($field);
-
 
 		return $form; 
 	}
